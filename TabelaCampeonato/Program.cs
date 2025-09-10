@@ -31,6 +31,8 @@ namespace SistemaDeJogos
             int rodadas = n - 1;
             int jogosPorRodada = n / 2;
 
+            List<Jogo> totalDeJogos = new List<Jogo>();
+
             for (int rodada = 0; rodada < rodadas; rodada++)
             {
                 Console.WriteLine($"\nRodada {rodada + 1}:");
@@ -45,8 +47,33 @@ namespace SistemaDeJogos
                         fora = n - 1; 
                     }
 
-                    Console.WriteLine($"{times[casa]} x {times[fora]}");
+                    Time time1 = times[casa];
+                    Time time2 = times[fora];
+
+                    Jogo partida = new Jogo(time1, time2);
+
+                    Console.Write($"Placar de {time1.Nome}: ");
+                    int golsTime1 = int.Parse(Console.ReadLine());
+
+                    Console.Write($"Placar de {time2.Nome}: ");
+                    int golsTime2 = int.Parse(Console.ReadLine());
+
+                    partida.AlterarPlacar(golsTime1, golsTime2);
+
+                    totalDeJogos.Add(partida);
+
+                    Console.WriteLine(partida);
+
+                    Console.WriteLine();
                 }
+                Console.ReadLine();
+
+                Console.Clear();
+            }
+
+            foreach(Jogo jogo in totalDeJogos)
+            {
+                Console.WriteLine(jogo);
             }
         }
     }
