@@ -19,6 +19,23 @@
             PlacarTime2 += golsTime2;
         }
 
+        public void GanhouPerdeu(int golsTime1, int golsTime2)
+        {
+            if(golsTime1 > golsTime2)
+            {
+                Time1.SomarPontuacao(3);
+            }
+            else if(golsTime1 < golsTime2)
+            {
+                Time2.SomarPontuacao(3);
+            }
+            else
+            {
+                Time1.SomarPontuacao(1);
+                Time2.SomarPontuacao(1);
+            }
+        }
+
         public override string ToString()
         {
             return $"{Time1.Nome} {PlacarTime1} X {PlacarTime2} {Time2.Nome}";

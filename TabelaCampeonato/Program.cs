@@ -63,6 +63,8 @@ namespace SistemaDeJogos
                     time1.AtualizarGols(golsTime1, golsTime2);
                     time2.AtualizarGols(golsTime2, golsTime1);
 
+                    partida.GanhouPerdeu(golsTime1, golsTime2);
+
                     totalDeJogos.Add(partida);
 
                     Console.WriteLine(partida);

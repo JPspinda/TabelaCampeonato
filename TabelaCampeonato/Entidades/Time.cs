@@ -21,6 +21,11 @@
             SaldoDeGols += golsFeitos - golsTomados;
         }
 
+        public void SomarPontuacao(int pontuacao)
+        {
+            Pontuacao += pontuacao;
+        }
+
         public override string ToString()
         {
             return $"{Nome} | Número de Partidas: {NumeroDeJogos} | Gols Feitos: {GolsFeitos} | Gols Tomados: {GolsTomados} | " +
