@@ -63,6 +63,9 @@ namespace SistemaDeJogos
                     time1.AtualizarGols(golsTime1, golsTime2);
                     time2.AtualizarGols(golsTime2, golsTime1);
 
+                    time1.IncrementarNumeroDeJogos();
+                    time2.IncrementarNumeroDeJogos();
+
                     partida.GanhouPerdeu(golsTime1, golsTime2);
 
                     totalDeJogos.Add(partida);
@@ -82,10 +85,10 @@ namespace SistemaDeJogos
             }
 
             times.Sort();
-            Console.WriteLine();
-            foreach(Time time in times)
+
+            for (int i = 1; i <= n; i++)
             {
-                Console.WriteLine(time);
+                Console.WriteLine($"{i, -2} | {times[i]}");
             }
         }
     }

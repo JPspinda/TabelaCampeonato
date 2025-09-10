@@ -26,6 +26,11 @@
             Pontuacao += pontuacao;
         }
 
+        public void IncrementarNumeroDeJogos()
+        {
+            NumeroDeJogos += 1;
+        }
+
         public override string ToString()
         {
             return $"{Nome, -15} | Número de Partidas: {NumeroDeJogos, -2} | Gols Feitos: {GolsFeitos, -2} | Gols Tomados: {GolsTomados, -2} | " +
