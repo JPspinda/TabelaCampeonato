@@ -12,6 +12,8 @@ namespace SistemaDeJogos
         {
             List<Time> times = new List<Time>();
 
+            List<Rodada> rodadas = new List<Rodada>();
+
             Console.Write("Informe a quantidade de times que gostaria de adicionar no campeonato: ");
             int n = int.Parse(Console.ReadLine());
 
@@ -22,27 +24,31 @@ namespace SistemaDeJogos
                 times.Add(new Time(nome));
             }
 
+            for(int i = 0; i < n - 1; i++)
+            {
+                rodadas.Add(new Rodada(i + 1));
+            }
+
             if (n % 2 != 0)
             {
                 times.Add(new Time("Folga"));
                 n++;
             }
 
-            int rodadas = n - 1;
             int jogosPorRodada = n / 2;
 
             List<Jogo> totalDeJogos = new List<Jogo>();
 
             Console.WriteLine();
 
-            for (int rodada = 0; rodada < rodadas; rodada++)
+            for (int i = 0; i < rodadas.Count; i++)
             {
-                Console.WriteLine($"Rodada {rodada + 1}:\n");
+                Console.WriteLine($"Rodada {i + 1}:\n");
 
                 for (int jogo = 0; jogo < jogosPorRodada; jogo++)
                 {
-                    int casa = (rodada + jogo) % (n - 1);
-                    int fora = (n - 1 - jogo + rodada) % (n - 1);
+                    int casa = (i + jogo) % (n - 1);
+                    int fora = (n - 1 - jogo + i) % (n - 1);
 
                     if (jogo == 0)
                     {
@@ -74,25 +80,31 @@ namespace SistemaDeJogos
 
                     totalDeJogos.Add(partida);
 
+                    rodadas[i].AdicionarJogo(partida);
+
                     Console.WriteLine();
                 }
 
                 times.Sort();
-                for (int i = 1; i <= n; i++)
+                for (int j = 1; j <= n; j++)
                 {
-                    Console.WriteLine($"{i,-2} | {times[i - 1]}");
+                    Console.WriteLine($"{j,-2} | {times[j - 1]}");
                 }
 
                 Console.ReadLine();
 
                 Console.Clear();
+            }
 
-                foreach (Jogo jogo in totalDeJogos)
+            foreach(Rodada rodada in rodadas)
+            {
+                Console.WriteLine($"Rodada #{rodada.Nome}");
+                foreach(Jogo jogo in rodada.Jogos)
                 {
                     Console.WriteLine(jogo);
                 }
+                Console.WriteLine();
             }
-            
         }
     }
 
