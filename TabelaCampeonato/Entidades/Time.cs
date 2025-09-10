@@ -1,6 +1,6 @@
 ﻿namespace TabelaCampeonato.Entidades
 {
-    class Time
+    class Time : IComparable
     {
         public string Nome { get; set; }
         public int NumeroDeJogos { get; private set; }
@@ -30,6 +30,29 @@
         {
             return $"{Nome} | Número de Partidas: {NumeroDeJogos} | Gols Feitos: {GolsFeitos} | Gols Tomados: {GolsTomados} | " +
                 $"Saldo de Gols: {SaldoDeGols} | Pontuação: {Pontuacao}";
+        }
+
+        public int CompareTo(object? obj)
+        {
+            if (!(obj is Time))
+            {
+                throw new ArgumentException("Comparing error: argument is not an employee");
+            }
+            Time outro = obj as Time;
+
+            int comparar = outro.Pontuacao.CompareTo(Pontuacao); ;
+            if(comparar != 0)
+            {
+                return comparar;
+            }
+
+            comparar = outro.SaldoDeGols.CompareTo(SaldoDeGols); ;
+            if (comparar != 0)
+            {
+                return comparar;
+            }
+
+            return outro.GolsFeitos.CompareTo(GolsFeitos);
         }
     }
 }

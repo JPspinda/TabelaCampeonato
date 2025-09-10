@@ -80,6 +80,8 @@ namespace SistemaDeJogos
             {
                 Console.WriteLine(jogo);
             }
+
+            times.Sort();
             Console.WriteLine();
             foreach(Time time in times)
             {
