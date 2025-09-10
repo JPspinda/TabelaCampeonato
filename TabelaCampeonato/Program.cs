@@ -33,9 +33,11 @@ namespace SistemaDeJogos
 
             List<Jogo> totalDeJogos = new List<Jogo>();
 
+            Console.WriteLine();
+
             for (int rodada = 0; rodada < rodadas; rodada++)
             {
-                Console.WriteLine($"\nRodada {rodada + 1}:");
+                Console.WriteLine($"Rodada {rodada + 1}:\n");
 
                 for (int jogo = 0; jogo < jogosPorRodada; jogo++)
                 {
@@ -52,10 +54,12 @@ namespace SistemaDeJogos
 
                     Jogo partida = new Jogo(time1, time2);
 
-                    Console.Write($"Placar de {time1.Nome}: ");
+                    Console.WriteLine(partida);
+
+                    Console.Write($"Gols do {time1.Nome}: ");
                     int golsTime1 = int.Parse(Console.ReadLine());
 
-                    Console.Write($"Placar de {time2.Nome}: ");
+                    Console.Write($"Gols do {time2.Nome}: ");
                     int golsTime2 = int.Parse(Console.ReadLine());
 
                     partida.AlterarPlacar(golsTime1, golsTime2);
@@ -70,26 +74,25 @@ namespace SistemaDeJogos
 
                     totalDeJogos.Add(partida);
 
-                    Console.WriteLine(partida);
-
                     Console.WriteLine();
                 }
+
+                times.Sort();
+                for (int i = 1; i <= n; i++)
+                {
+                    Console.WriteLine($"{i,-2} | {times[i - 1]}");
+                }
+
                 Console.ReadLine();
 
                 Console.Clear();
-            }
 
-            foreach(Jogo jogo in totalDeJogos)
-            {
-                Console.WriteLine(jogo);
+                foreach (Jogo jogo in totalDeJogos)
+                {
+                    Console.WriteLine(jogo);
+                }
             }
-
-            times.Sort();
-
-            for (int i = 1; i <= n; i++)
-            {
-                Console.WriteLine($"{i, -2} | {times[i]}");
-            }
+            
         }
     }
 

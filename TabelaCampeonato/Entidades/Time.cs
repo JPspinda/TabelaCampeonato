@@ -4,6 +4,9 @@
     {
         public string Nome { get; set; }
         public int NumeroDeJogos { get; private set; }
+        public int NumeroDeVitorias { get; set; }
+        public int NumeroDeEmpates { get; set; }
+        public int NumeroDeDerrotas { get; set; }
         public int GolsFeitos { get; private set; }
         public int GolsTomados { get; private set; }
         public int SaldoDeGols { get; private set; }
@@ -31,10 +34,27 @@
             NumeroDeJogos += 1;
         }
 
+        public void IncrementarNumeroDeVitorias()
+        {
+            NumeroDeVitorias += 1;
+        }
+
+        public void IncrementarNumeroDeEmpates()
+        {
+            NumeroDeEmpates += 1;
+        }
+
+        public void IncrementarNumeroDeDerrotas()
+        {
+            NumeroDeDerrotas += 1;
+        }
+
         public override string ToString()
         {
-            return $"{Nome, -15} | Número de Partidas: {NumeroDeJogos, -2} | Gols Feitos: {GolsFeitos, -2} | Gols Tomados: {GolsTomados, -2} | " +
-                $"Saldo de Gols: {SaldoDeGols, -2} | Pontuação: {Pontuacao,-2}";
+            return $"{Nome, -15} | P: {Pontuacao,-2} | J: {NumeroDeJogos, -2} | V: {NumeroDeVitorias, -2} | E: {NumeroDeEmpates, -2} | " +
+                $"D: {NumeroDeDerrotas} | " +
+                $"GP: {GolsFeitos, -2} | GC: {GolsTomados, -2} | " +
+                $"SG: {SaldoDeGols, -2}";
         }
 
         public int CompareTo(object? obj)
@@ -53,6 +73,12 @@
 
             comparar = outro.SaldoDeGols.CompareTo(SaldoDeGols); ;
             if (comparar != 0)
+            {
+                return comparar;
+            }
+
+            comparar = outro.NumeroDeVitorias.CompareTo(NumeroDeVitorias);
+            if(comparar != 0)
             {
                 return comparar;
             }

@@ -24,15 +24,21 @@
             if(golsTime1 > golsTime2)
             {
                 Time1.SomarPontuacao(3);
+                Time1.IncrementarNumeroDeVitorias();
+                Time2.IncrementarNumeroDeDerrotas();
             }
             else if(golsTime1 < golsTime2)
             {
                 Time2.SomarPontuacao(3);
+                Time2.IncrementarNumeroDeVitorias();
+                Time1.IncrementarNumeroDeDerrotas();
             }
             else
             {
                 Time1.SomarPontuacao(1);
                 Time2.SomarPontuacao(1);
+                Time1.IncrementarNumeroDeEmpates();
+                Time2.IncrementarNumeroDeEmpates();
             }
         }
 
