@@ -28,8 +28,8 @@
 
         public override string ToString()
         {
-            return $"{Nome} | Número de Partidas: {NumeroDeJogos} | Gols Feitos: {GolsFeitos} | Gols Tomados: {GolsTomados} | " +
-                $"Saldo de Gols: {SaldoDeGols} | Pontuação: {Pontuacao}";
+            return $"{Nome, -15} | Número de Partidas: {NumeroDeJogos, -2} | Gols Feitos: {GolsFeitos, -2} | Gols Tomados: {GolsTomados, -2} | " +
+                $"Saldo de Gols: {SaldoDeGols, -2} | Pontuação: {Pontuacao,-2}";
         }
 
         public int CompareTo(object? obj)
