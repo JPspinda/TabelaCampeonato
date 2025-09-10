@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.14.36414.22 d17.14
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TabelaCampeonato", "TabelaCampeonato\TabelaCampeonato.csproj", "{B9F014F6-2EAE-4B70-942F-70892E28BB0B}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B9F014F6-2EAE-4B70-942F-70892E28BB0B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B9F014F6-2EAE-4B70-942F-70892E28BB0B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B9F014F6-2EAE-4B70-942F-70892E28BB0B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B9F014F6-2EAE-4B70-942F-70892E28BB0B}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {9353C936-7CB4-40C4-9240-7B555A2758F2}
+	EndGlobalSection
+EndGlobal
