@@ -21,7 +21,7 @@
 
         public override string ToString()
         {
-            return $"{Time1} {PlacarTime1} X {PlacarTime2} {Time2}";
+            return $"{Time1.Nome} {PlacarTime1} X {PlacarTime2} {Time2.Nome}";
         }
     }
 }

@@ -60,6 +60,9 @@ namespace SistemaDeJogos
 
                     partida.AlterarPlacar(golsTime1, golsTime2);
 
+                    time1.AtualizarGols(golsTime1, golsTime2);
+                    time2.AtualizarGols(golsTime2, golsTime1);
+
                     totalDeJogos.Add(partida);
 
                     Console.WriteLine(partida);
@@ -74,6 +77,11 @@ namespace SistemaDeJogos
             foreach(Jogo jogo in totalDeJogos)
             {
                 Console.WriteLine(jogo);
+            }
+            Console.WriteLine();
+            foreach(Time time in times)
+            {
+                Console.WriteLine(time);
             }
         }
     }
