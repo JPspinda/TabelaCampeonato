@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Threading.Channels;
+using System.Collections.Generic;
+using TabelaCampeonato.Entidades;
 
 namespace SistemaDeJogos
 {
@@ -8,25 +10,27 @@ namespace SistemaDeJogos
     {
         static void Main()
         {
-            // Lista de times
-            List<string> times = new List<string>
-        {
-            "Time1", "Time2", "Time3", "Time4", "Time5",
-            "Time6", "Time7", "Time8", "Time9", "Time10"
-        };
+            List<Time> times = new List<Time>();
 
-            int n = times.Count;
+            Console.Write("Informe a quantidade de times que gostaria de adicionar no campeonato: ");
+            int n = int.Parse(Console.ReadLine());
+
+            for(int i = 1; i <= n; i++)
+            {
+                Console.Write($"Time #{i}: ");
+                string nome = Console.ReadLine();
+                times.Add(new Time(nome));
+            }
 
             if (n % 2 != 0)
             {
-                times.Add("Folga"); // Caso fosse ímpar
+                times.Add(new Time("Folga"));
                 n++;
             }
 
             int rodadas = n - 1;
             int jogosPorRodada = n / 2;
 
-            // Geração das rodadas
             for (int rodada = 0; rodada < rodadas; rodada++)
             {
                 Console.WriteLine($"\nRodada {rodada + 1}:");
@@ -38,7 +42,7 @@ namespace SistemaDeJogos
 
                     if (jogo == 0)
                     {
-                        fora = n - 1; // último time fixo
+                        fora = n - 1; 
                     }
 
                     Console.WriteLine($"{times[casa]} x {times[fora]}");
