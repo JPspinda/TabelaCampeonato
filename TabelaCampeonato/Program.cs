@@ -39,11 +39,12 @@ namespace SistemaDeJogos
 
             List<Jogo> totalDeJogos = new List<Jogo>();
 
-            Console.WriteLine();
+            Console.ReadLine();
+            Console.Clear();
 
             for (int i = 0; i < rodadas.Count; i++)
             {
-                Console.WriteLine($"Rodada {i + 1}:\n");
+                Console.WriteLine($"Rodada #{i + 1}:\n");
 
                 for (int jogo = 0; jogo < jogosPorRodada; jogo++)
                 {
@@ -88,11 +89,7 @@ namespace SistemaDeJogos
                 Console.WriteLine($"=== TABELA APÓS A #{i + 1} RODADA ===");
                 Console.WriteLine();
 
-                times.Sort();
-                for (int j = 1; j <= n; j++)
-                {
-                    Console.WriteLine($"{j,-2} | {times[j - 1]}");
-                }
+                ImprimirTabela(times);
 
                 Console.ReadLine();
 
@@ -108,6 +105,24 @@ namespace SistemaDeJogos
                 }
                 Console.WriteLine();
             }
+        }
+
+        static void ImprimirTabela(List<Time> times)
+        {
+            Console.WriteLine("==============================================================");
+            Console.WriteLine($"{"#",-3} {"Time",-15} {"P",3} {"J",3} {"V",3} {"E",3} {"D",3} {"GP",3} {"GC",3} {"SG",3}");
+            Console.WriteLine("--------------------------------------------------------------");
+
+            for (int i = 0; i < times.Count; i++)
+            {
+                var t = times[i];
+                Console.WriteLine(
+                    $"{i + 1,-3} {t.Nome,-15} {t.Pontuacao,3} {t.NumeroDeJogos,3} {t.NumeroDeVitorias,3} " +
+                    $"{t.NumeroDeEmpates,3} {t.NumeroDeDerrotas,3} {t.GolsFeitos,3} {t.GolsTomados,3} {t.SaldoDeGols,3}"
+                );
+            }
+
+            Console.WriteLine("==============================================================");
         }
     }
 

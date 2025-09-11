@@ -71,19 +71,25 @@
                 return comparar;
             }
 
-            comparar = outro.SaldoDeGols.CompareTo(SaldoDeGols); ;
-            if (comparar != 0)
-            {
-                return comparar;
-            }
-
             comparar = outro.NumeroDeVitorias.CompareTo(NumeroDeVitorias);
             if(comparar != 0)
             {
                 return comparar;
             }
 
-            return outro.GolsFeitos.CompareTo(GolsFeitos);
+            comparar = outro.SaldoDeGols.CompareTo(SaldoDeGols); ;
+            if (comparar != 0)
+            {
+                return comparar;
+            }
+
+            comparar = outro.GolsFeitos.CompareTo(GolsFeitos); ;
+            if (comparar != 0)
+            {
+                return comparar;
+            }
+
+            return outro.Nome.CompareTo(Nome);
         }
     }
 }
