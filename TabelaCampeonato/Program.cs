@@ -58,7 +58,8 @@ namespace SistemaDeJogos
                 }
             }
 
-            Console.WriteLine();
+            Console.ReadLine();
+            Console.Clear();
 
             foreach (Rodada rodada in rodadas)
             {
