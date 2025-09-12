@@ -17,6 +17,12 @@ namespace SistemaDeJogos
             Console.Write("Informe a quantidade de times que gostaria de adicionar no campeonato: ");
             int n = int.Parse(Console.ReadLine());
 
+            if (n % 2 != 0)
+            {
+                times.Add(new Time("Folga"));
+                n++;
+            }
+
             for (int i = 1; i <= n; i++)
             {
                 Console.Write($"Time #{i}: ");
@@ -29,22 +35,10 @@ namespace SistemaDeJogos
                 rodadas.Add(new Rodada(i + 1));
             }
 
-            if (n % 2 != 0)
-            {
-                times.Add(new Time("Folga"));
-                n++;
-            }
-
             int jogosPorRodada = n / 2;
 
-            List<Jogo> totalDeJogos = new List<Jogo>();
-
-            Console.WriteLine();
-
-            for (int i = 0; i < rodadas.Count; i++)
+            for (int i = 0; i < n - 1; i++)
             {
-                Console.WriteLine($"Rodada {i + 1}:\n");
-
                 for (int jogo = 0; jogo < jogosPorRodada; jogo++)
                 {
                     int casa = (i + jogo) % (n - 1);
@@ -60,54 +54,95 @@ namespace SistemaDeJogos
 
                     Jogo partida = new Jogo(time1, time2);
 
-                    Console.WriteLine(partida);
-
-                    Console.Write($"Gols do {time1.Nome}: ");
-                    int golsTime1 = int.Parse(Console.ReadLine());
-
-                    Console.Write($"Gols do {time2.Nome}: ");
-                    int golsTime2 = int.Parse(Console.ReadLine());
-
-                    partida.AlterarPlacar(golsTime1, golsTime2);
-
-                    time1.AtualizarGols(golsTime1, golsTime2);
-                    time2.AtualizarGols(golsTime2, golsTime1);
-
-                    time1.IncrementarNumeroDeJogos();
-                    time2.IncrementarNumeroDeJogos();
-
-                    partida.GanhouPerdeu(golsTime1, golsTime2);
-
-                    totalDeJogos.Add(partida);
-
                     rodadas[i].AdicionarJogo(partida);
-
-                    Console.WriteLine();
                 }
-
-                Console.WriteLine($"=== TABELA APÓS A #{i + 1} RODADA ===");
-                Console.WriteLine();
-
-                times.Sort();
-                for (int j = 1; j <= n; j++)
-                {
-                    Console.WriteLine($"{j,-2} | {times[j - 1]}");
-                }
-
-                Console.ReadLine();
-
-                Console.Clear();
             }
+
+            Console.WriteLine();
 
             foreach (Rodada rodada in rodadas)
             {
-                Console.WriteLine($"Rodada #{rodada.Nome}");
+                Console.WriteLine($"=== JOGOS DA #{rodada.Nome} RODADA ===");
                 foreach (Jogo jogo in rodada.Jogos)
                 {
                     Console.WriteLine(jogo);
                 }
                 Console.WriteLine();
             }
+
+            Console.ReadLine();
+            Console.Clear();
+
+            foreach (Rodada rodada in rodadas)
+            {
+                Console.WriteLine($"=== #{rodada.Nome} RODADA ===");
+
+                foreach (Jogo partida in rodada.Jogos)
+                {
+                    Console.WriteLine(partida);
+
+                    Console.Write($"Gols do {partida.Time1.Nome}: ");
+                    int golsTime1 = int.Parse(Console.ReadLine());
+
+                    Console.Write($"Gols do {partida.Time2.Nome}: ");
+                    int golsTime2 = int.Parse(Console.ReadLine());
+
+                    partida.AlterarPlacar(golsTime1, golsTime2);
+
+                    partida.Time1.AtualizarGols(golsTime1, golsTime2);
+                    partida.Time2.AtualizarGols(golsTime2, golsTime1);
+
+                    partida.Time1.IncrementarNumeroDeJogos();
+                    partida.Time2.IncrementarNumeroDeJogos();
+
+                    partida.GanhouPerdeu(golsTime1, golsTime2);
+
+                    Console.WriteLine();
+                }
+
+                Console.WriteLine($"=== TABELA APÓS A #{rodada.Nome} RODADA ===");
+                Console.WriteLine();
+
+                ImprimirTabela(times);
+
+                Console.ReadLine();
+
+                Console.Clear();
+            }
+
+            Console.WriteLine("=== JOGOS ATUALIZADOS ===");
+            Console.WriteLine();
+            foreach (Rodada rodada in rodadas)
+            {
+                Console.WriteLine($"=== JOGOS DA #{rodada.Nome} RODADA ===");
+                foreach (Jogo jogo in rodada.Jogos)
+                {
+                    Console.WriteLine(jogo);
+                }
+                Console.WriteLine();
+            }
+
+            ImprimirTabela(times);
+        }
+
+        static void ImprimirTabela(List<Time> times)
+        {
+            times.Sort();
+
+            Console.WriteLine("==============================================================");
+            Console.WriteLine($"{"#",-3} {"Time",-15} {"P",3} {"J",3} {"V",3} {"E",3} {"D",3} {"GP",3} {"GC",3} {"SG",3}");
+            Console.WriteLine("--------------------------------------------------------------");
+
+            for (int i = 0; i < times.Count; i++)
+            {
+                var t = times[i];
+                Console.WriteLine(
+                    $"{i + 1,-3} {t.Nome,-15} {t.Pontuacao,3} {t.NumeroDeJogos,3} {t.NumeroDeVitorias,3} " +
+                    $"{t.NumeroDeEmpates,3} {t.NumeroDeDerrotas,3} {t.GolsFeitos,3} {t.GolsTomados,3} {t.SaldoDeGols,3}"
+                );
+            }
+
+            Console.WriteLine("==============================================================");
         }
     }
 
